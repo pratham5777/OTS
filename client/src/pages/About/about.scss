@@ -1,0 +1,47 @@
+// about.scss
+
+.about-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.about-box {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+.about-box h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.about-box h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.about-box p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .about-box {
+    padding: 40px;
+  }
+
+  .about-box h1 {
+    font-size: 32px;
+  }
+
+  .about-box h2 {
+    font-size: 24px;
+  }
+
+  .about-box p {
+    font-size: 18px;
+  }
+}
