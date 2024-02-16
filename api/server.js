@@ -12,7 +12,6 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 
 const app = express();
-const PORT = process.env.PORT || 6010
 dotenv.config();
 // mongoose.set("strictQuery", true);
 
