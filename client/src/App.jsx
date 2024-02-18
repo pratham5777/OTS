@@ -17,12 +17,14 @@ import Profile from "./pages/Profile/Profile";
 import AllProperty from "./pages/ManyProperties/ManyProperty";
 import About from "./pages/About/about";
 import BookingPage from "./pages/BookingPage/BookingPage";
+import Appointment from "./pages/Appointment/Appointment";
 import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
 import Pay from "./pages/pay/Pay";
 import Success from "./pages/success/Success";
+
 function App() {
   const queryClient = new QueryClient();
 
@@ -103,9 +105,21 @@ function App() {
           path: "/about",
           element: <About/> ,
         },
+        // {
+        //   path:"/book/:id",
+        //   element:<BookingPage/>,
+        // },
+        // {
+        //   path: "/BookingPage/:id",
+        //   element: <BookingPage/> ,
+        // },
         {
-          path: "/BookingPage",
-          element: <BookingPage/> ,
+          path:"/book/:id",
+          element:<BookingPage/>,
+        },
+        {
+          path: "/appointment",
+          element: <Appointment/> ,
         },
       ],
     },

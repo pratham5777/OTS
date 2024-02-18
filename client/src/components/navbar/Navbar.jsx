@@ -65,6 +65,9 @@ function Navbar() {
                       <Link className="link" to="/add">
                         Add New Property
                       </Link>
+                      <Link className="link" to="/appointment">
+                        appointment
+                      </Link>
                     </>
                   )}
                   <Link className="link" to="/orders">

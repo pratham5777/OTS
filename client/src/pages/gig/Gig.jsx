@@ -161,7 +161,7 @@ function Gig() {
             <button>Continue</button>
             </Link> */}
             <div className="book">
-            <Link className="book" to="/BookingPage">
+            <Link className="book" to={`/book/${id}`}>
                     book
                   </Link>
                 </div>
