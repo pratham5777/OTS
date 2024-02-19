@@ -336,6 +336,7 @@ import "./Orders.scss";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import getCurrentUser from "../../utils/getCurrentUser";
+import "./Orders.scss";
 
 const Bookings = () => {
   const currentUser = getCurrentUser();
@@ -396,14 +397,14 @@ const Bookings = () => {
   };
 
   return (
-    <div className="bookings">
+    <div className="bookin">
       {isLoading ? (
         "loading"
       ) : error ? (
         "error"
       ) : (
-        <div className="container">
-          <div className="title">
+        <div className="contar">
+          <div className="tit">
             <h1>Bookings</h1>
           </div>
           <table>

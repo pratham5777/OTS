@@ -28,7 +28,7 @@ const Profile = () => {
   const userImage = currentUser.img || "../../../public/img/noavatar.jpg";
 
   return (
-    <div className="profile-container">
+    <div className="profi">
       {isLoading ? (
         "Loading..."
       ) : error ? (

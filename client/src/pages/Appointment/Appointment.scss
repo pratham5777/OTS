@@ -1,0 +1,61 @@
+.request-contain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    background-image: url('https://img.freepik.com/free-photo/elevated-view-laptop-stationeries-yellow-backdrop_23-2147880496.jpg'); /* Replace with the path to your background image */
+  background-size: cover;
+  background-position: center;
+  }
+  
+  .contain{
+    width: 80%;
+    background-color: #d2d0c9;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .request {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .request p {
+    margin: 0;
+    padding: 8px 0;
+  }
+  
+  .request button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .request button.accept {
+    background-color: #2ecc71; /* Green */
+    color: #fff;
+    margin-right: 10px;
+  }
+  
+  .request button.reject {
+    background-color: #e74c3c; /* Red */
+    color: #fff;
+  }
+  
+  .request button:hover {
+    opacity: 0.8;
+  }
+  

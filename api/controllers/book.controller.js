@@ -146,6 +146,34 @@ try {
 };
 
 // Reject a booking request
+// export const rejectBookingRequest = async (req, res) => {
+//   // try {
+//   //   const { requestId } = req.params;
+//   //   // Update the booking request status in the database (e.g., set status to rejected)
+//   //   res.status(200).json({ message: 'Booking request rejected' });
+//   // } catch (error) {
+//   //   console.error('Error rejecting booking request:', error);
+//   //   res.status(500).json({ message: 'Internal server error' });
+//   // }
+//   try {
+//     const { bookingId } = req.params;
+//     const booking = await BookingModel.findById(bookingId);
+//     if (!booking) {
+//       return res.status(404).json({ message: 'Booking not found' });
+//     }
+
+//     // Update the status to 'rejected'
+//     booking.status = 'rejected';
+//     await booking.save();
+
+//     res.status(200).json({ message: 'Booking rejected successfully', booking });
+//   } catch (error) {
+//     console.error('Error rejecting booking:', error);
+//     res.status(500).json({ message: 'Internal server error' });
+//   }
+// };
+
+
 export const rejectBookingRequest = async (req, res) => {
   // try {
   //   const { requestId } = req.params;
@@ -157,14 +185,14 @@ export const rejectBookingRequest = async (req, res) => {
   // }
   try {
     const { bookingId } = req.params;
-    const booking = await BookingModel.findById(bookingId);
+    
+    const booking = await BookingModel.findByIdAndUpdate(bookingId, { status: 'rejected' }, { new: true });
     if (!booking) {
       return res.status(404).json({ message: 'Booking not found' });
-    }
+  }
+  // If you need to do something after the booking is updated successfully
+  // For example, send a response indicating success
 
-    // Update the status to 'rejected'
-    booking.status = 'rejected';
-    await booking.save();
 
     res.status(200).json({ message: 'Booking rejected successfully', booking });
   } catch (error) {

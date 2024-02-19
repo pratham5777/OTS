@@ -29,6 +29,6 @@ router.get('/requests/:userId', getBookingRequests);
 router.put('/requests/accept/:bookingId', acceptBookingRequest);
 
 // Route to reject a booking request
-router.put('/requests/reject/:requestId', rejectBookingRequest);
+router.put('/requests/reject/:bookingId', rejectBookingRequest);
 
 export default router;

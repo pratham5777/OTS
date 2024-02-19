@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import getCurrentUser from '../../utils/getCurrentUser';
 import newRequest from '../../utils/newRequest';
+import "./Appointment.scss";
+import { useQuery } from '@tanstack/react-query';
 
 function RequestPage() {
     const currentUser = getCurrentUser();
@@ -36,16 +38,31 @@ function RequestPage() {
 
     const handleReject = async (requestId) => {
         try {
-            await newRequest.put(`/book/requests/${requestId}/reject`);
+            await newRequest.put(`/book/requests/reject/${requestId}`);
             // Optionally, you can update the state to reflect the change
         } catch (error) {
             console.error('Error rejecting request:', error);
         }
     };
+    const { data: gigsData, error: gigsError } = useQuery({
+        queryKey: ["gigs"],
+        queryFn: () =>
+          newRequest.get('/gigs').then((res) => {
+            return res.data;
+          }),
+      });
+    const getGigDescription = (gigId) => {
+        if (!gigsData || gigsData.length === 0) {
+          return "N/A";
+        }
+    
+        const gig = gigsData.find((gig) => gig._id === gigId);
+        return gig ? gig.desc : "N/A";
+      };
 
     return (
-        <div className="request-container">
-            <div className="container">
+        <div className="request-contain">
+            <div className="contain">
                 <h2>Booking Requests</h2>
                 <div>
                     {
@@ -54,10 +71,12 @@ function RequestPage() {
                                 <p>Name: {request.name}</p>
                                 <p>Date of Booking: {request.date}</p>
                                 <p>Phone Number: {request.phone}</p>
-                                <p>{request._id}</p>
+                                <p>Property Name: {getGigDescription(request.gigId)}</p>
+                                {/* <p>{request._id}</p> */}
                                 {/* Add more details as needed */}
-                                <button onClick={() => handleAccept(request._id)}>Accept</button>
-                                <button onClick={() => handleReject(request._id)}>Reject</button>
+                                <button className="accept" onClick={() => handleAccept(request._id)}>Accept</button>
+<button className="reject" onClick={() => handleReject(request._id)}>Reject</button>
+
                             </div>
                         ))
                     }

@@ -132,6 +132,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import getCurrentUser from '../../utils/getCurrentUser';
 import newRequest from '../../utils/newRequest';
+import "./BookingPage.scss";
  // Import newRequest from your API module
 
 function BookingPage() {
@@ -202,9 +203,9 @@ function BookingPage() {
 
 
     return (
-        <div className="booking-container">
-            <div className="container">
-                <h2 className='bookingPage'>Ready To Book</h2>
+        <div className="booki">
+            <div className="contai">
+                <h2 className='bookingPa'>Ready To Book</h2>
                 <div>
                     Fill the below fields to send your booking request to the landlord in just one click 
                 </div>
