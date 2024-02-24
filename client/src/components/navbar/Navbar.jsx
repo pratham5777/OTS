@@ -66,7 +66,7 @@ function Navbar() {
                         Add New Property
                       </Link>
                       <Link className="link" to="/appointment">
-                        appointment
+                        Appointment
                       </Link>
                     </>
                   )}

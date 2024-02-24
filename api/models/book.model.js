@@ -39,6 +39,7 @@ const bookSchema = new Schema(
       type: String,
       required: true,
     },
+   
     buyerId: {
       type: String,
       required: true,
@@ -52,7 +53,7 @@ const bookSchema = new Schema(
        type:Boolean,
        default:false
      }
-
+    
   },
   {
     timestamps: true,

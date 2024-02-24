@@ -10,15 +10,21 @@ const Add = () => {
   const [singleFile, setSingleFile] = useState(undefined);
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
+  const [address, setAddress] = useState(""); // New state for address field
 
   const [state, dispatch] = useReducer(gigReducer, INITIAL_STATE);
 
   const handleChange = (e) => {
-    dispatch({
-      type: "CHANGE_INPUT",
-      payload: { name: e.target.name, value: e.target.value },
-    });
+    if (e.target.name === "address") {
+      setAddress(e.target.value);
+    } else {
+      dispatch({
+        type: "CHANGE_INPUT",
+        payload: { name: e.target.name, value: e.target.value },
+      });
+    }
   };
+
   const handleFeature = (e) => {
     e.preventDefault();
     dispatch({
@@ -51,7 +57,7 @@ const Add = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: (gig) =>  {
+    mutationFn: (gig) => {
       return newRequest.post("/gigs", gig);
     },
     onSuccess: () => {
@@ -61,8 +67,8 @@ const Add = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    mutation.mutate(state);
-      navigate("/mygigs")
+    mutation.mutate({ ...state, address }); // Include address in the mutation
+    navigate("/mygigs");
   };
 
   return (
@@ -71,11 +77,12 @@ const Add = () => {
         <h1>Add New Property</h1>
         <div className="sections">
           <div className="info">
-            <label htmlFor="">Location</label>
+            <label htmlFor="">City</label>
+            
             <input
               type="text"
               name="title"
-              placeholder=""
+              placeholder="Enter your city"
               onChange={handleChange}
             />
             <label htmlFor="">Category</label>
@@ -113,7 +120,15 @@ const Add = () => {
               rows="1"
               onChange={handleChange}
             ></textarea>
-            
+            {/* New address field */}
+            <label htmlFor="">Address</label>
+            <input
+              type="text"
+              name="address"
+              placeholder="Enter property address"
+              
+              onChange={handleChange}
+            />
           </div>
           <div className="details">
             <label htmlFor="">Landmark</label>
@@ -142,7 +157,10 @@ const Add = () => {
             />
             <label htmlFor="">Add Features</label>
             <form action="" className="add" onSubmit={handleFeature}>
-              <input type="text" placeholder="e.g. parking.furnished,semi-furnished,electricity bill included,etc..." />
+              <input
+                type="text"
+                placeholder="e.g. parking.furnished,semi-furnished,electricity bill included,etc..."
+              />
               <button type="submit">add</button>
             </form>
             <div className="addedFeatures">
@@ -164,8 +182,8 @@ const Add = () => {
           </div>
         </div>
         <div className="createButtonContainer">
-    <button onClick={handleSubmit}>Create</button>
-  </div>
+          <button onClick={handleSubmit}>Create</button>
+        </div>
       </div>
     </div>
   );

@@ -40,7 +40,7 @@ const Message = () => {
     <div className="message">
       <div className="container">
         <span className="breadcrumbs">
-          <Link to="/messages">Messages</Link> , John Doe ,
+          <Link to="/messages">Messages</Link> 
         </span>
         {isLoading ? (
           "loading"
@@ -51,7 +51,7 @@ const Message = () => {
             {data.map((m) => (
               <div className={m.userId === currentUser._id ? "owner item" : "item"} key={m._id}>
                 <img
-                  src={currentUser}
+                  src={userImage}
                   alt=""
                 />
                 <p>{m.desc}</p>
@@ -61,7 +61,7 @@ const Message = () => {
         )}
         <hr />
         <form className="write" onSubmit={handleSubmit}>
-          <textarea type="text" placeholder="write a message" />
+          <textarea type="text" placeholder="write a message" textarea/>
           <button type="submit">Send</button>
         </form>
       </div>

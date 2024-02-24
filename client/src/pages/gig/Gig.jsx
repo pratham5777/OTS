@@ -77,6 +77,9 @@ function Gig() {
             </Slider>
             <h2>Name of Property </h2>
             <p>{data.desc}</p>
+            <h2>Address </h2>
+            <p>{data.address}</p>
+
             {isLoadingUser ? (
               "loading"
             ) : errorUser ? (

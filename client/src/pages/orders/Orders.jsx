@@ -342,6 +342,7 @@ const Bookings = () => {
   const currentUser = getCurrentUser();
   const currentUserId = currentUser._id;
   const isSeller = currentUser.isSeller;
+  const navigate = useNavigate(); // Define useNavigate here
 
   const [usersMap, setUsersMap] = useState({});
   const [filteredBookings, setFilteredBookings] = useState([]);
@@ -386,6 +387,27 @@ const Bookings = () => {
   });
 
   console.log(data)
+  const handleContact = async (order) => {
+    const sellerId = order.userId;
+    const buyerId = order.buyerId;
+    const id = sellerId + buyerId;
+    console.log(sellerId)
+    console.log(buyerId)
+    console.log(id)
+
+    try {
+      const res = await newRequest.get(`/conversations/single/${id}`);
+      navigate(`/message/${res.data.id}`);
+    } catch (err) {
+      if (err.response.status === 404) {
+        const res = await newRequest.post(`/conversations/`, {
+          to: currentUser.seller ? buyerId : sellerId,
+        });
+        navigate(`/message/${res.data.id}`);
+      }
+    }
+  };
+  console.log(data)
 
   const getGigDescription = (gigId) => {
     if (!gigsData || gigsData.length === 0) {
@@ -415,6 +437,7 @@ const Bookings = () => {
                 {isSeller && <th>Phone</th>}
                 <th>Property Name</th>
                 <th>Status</th>
+                <th>Message</th>
               </tr>
             </thead>
             <tbody>
@@ -425,6 +448,17 @@ const Bookings = () => {
                   {isSeller && <td>{booking.phone}</td>}
                   <td>{getGigDescription(booking.gigId)}</td>
                   <td>{booking.status}</td>
+                  <td>
+                    
+  {booking.status === 'accepted' && (
+    <img
+      className="messag"
+      src="./img/message.png"
+      alt=""
+      onClick={() => handleContact(booking)}
+    />
+  )}
+</td>
                 </tr>
               ))}
             </tbody>

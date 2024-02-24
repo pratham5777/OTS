@@ -21,14 +21,15 @@
   }
 
   .container {
-    width: 1400px;
+    width: 100%; // Adjusted for responsiveness
+    max-width: 1400px; // Added max-width for larger screens
     display: flex;
+    flex-direction: column; // Changed to column for responsiveness
     align-items: center;
-    justify-content: space-between;
-    padding: 20px 0px;
+    padding: 20px 10px; // Adjusted padding for smaller screens
 
     .logo {
-      font-size: 34px;
+      font-size: 28px; // Adjusted font size for smaller screens
       font-weight: bold;
 
       .text {
@@ -39,10 +40,12 @@
         color: #1dbf73;
       }
     }
+
     .links {
       display: flex;
-      align-items: center;
-      gap: 24px;
+      flex-direction: column; // Changed to column for responsiveness
+      align-items: center; // Center items for responsiveness
+      gap: 16px; // Adjusted gap for smaller screens
       font-family: "Montserrat", sans-serif;
       font-weight: 500;
 
@@ -66,7 +69,7 @@
 
         .options {
           position: absolute;
-          top: 50px;
+          top: calc(100% + 10px);
           right: 0;
           padding: 20px;
           background-color: white;
@@ -99,19 +102,43 @@
   }
 
   hr {
-    width: calc(100% - 2px);
+    width: 100%;
     height: 0;
     border-top: 0.5px solid #ebe9e9;
     border-bottom: 0.5px solid #ebe9e9;
   }
 
   .menu {
-    width: 1400px;
+    width: 100%;
     padding: 10px 0px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; // Changed to column for responsiveness
+    align-items: center; // Center items for responsiveness
     color: gray;
     font-weight: 300;
     font-family: "Montserrat", sans-serif;
+  }
+
+  @media only screen and (min-width: 768px) {
+    .container {
+      flex-direction: row; // Change back to row for larger screens
+      justify-content: space-between;
+      padding: 20px 0px; // Adjust padding back to original for larger screens
+
+      .logo {
+        font-size: 34px; // Revert font size for larger screens
+      }
+
+      .links {
+        flex-direction: row; // Change back to row for larger screens
+        align-items: center;
+        gap: 24px; // Revert gap for larger screens
+      }
+    }
+
+    .menu {
+      flex-direction: row; // Change back to row for larger screens
+      justify-content: space-between;
+    }
   }
 }

@@ -17,6 +17,7 @@ function Register() {
     phone: "",
   });
 
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false); // State variable to manage success message popup
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -41,7 +42,11 @@ function Register() {
         ...user,
         img: url,
       });
-      navigate("/");
+      setShowSuccessMessage(true); // Show success message
+      setTimeout(() => {
+        setShowSuccessMessage(false); // Hide success message after 2 seconds
+        navigate("/login"); // Redirect to login page
+      }, 2000);
     } catch (err) {
       console.error(err);
     }
@@ -109,6 +114,16 @@ function Register() {
           <button type="submit">Register</button>
         </form>
       </div>
+
+      {showSuccessMessage && ( // Render success message popup
+        <div className="popup">
+          <div className="popup-inner">
+            <div className="popup-content">
+              <p>Successfully registered!</p>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className={`register-card ${user.isSeller ? "seller-card" : ""}`}>
         <h1>I Want to Become a Seller</h1>

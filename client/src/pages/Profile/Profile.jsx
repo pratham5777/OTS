@@ -40,19 +40,20 @@ const Profile = () => {
             <div className="profile-info">
               <h1>{currentUser.username}</h1>
               <p>Email: {currentUser.email}</p>
-              <p>Total properties: {currentUser.totalGigs}</p>
+              <p>Total properties: {gigsData ? gigsData.length : 0}</p> {/* Modify this line */}
               <p>Is Seller: {currentUser.isSeller ? "Yes" : "No"}</p>
               <p>Country: {currentUser.country}</p>
               <p>Joined: {new Date(currentUser.createdAt).toLocaleDateString()}</p>
             </div>
           </div>
-
-          <h2></h2>
+          
+          <h2>Properties</h2>
           {gigsData ? (
             <ul className="gig-list">
               {gigsData.map((gig) => (
                 <li key={gig._id}>
-                  <Link to={`/gig/${gig._id}`}>{gig.title}</Link>
+                  <k1>Name:  </k1> 
+                  <Link to={`/gig/${gig._id}`}>{gig.desc}</Link>
                 </li>
               ))}
             </ul>

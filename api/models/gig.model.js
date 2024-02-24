@@ -15,6 +15,10 @@ const GigSchema = new Schema(
       type: String,
       required: true,
     },
+    address: {
+      type: String,
+      required: true,
+    },
     totalStars: {
       type: Number,
       default: 0,
